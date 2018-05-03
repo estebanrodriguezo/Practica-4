@@ -1,6 +1,13 @@
 #include "enrutadores.h"
 
-Enrrutadores::Enrrutadores()
+Enrutador::Enrutador()
 {
 
+}
+
+
+Enrutador::Enrutador(string nombre)
+{
+    cout << "Enrutador " << nombre << " creado." << endl;
+    this->nombreNodo = nombre;
 }

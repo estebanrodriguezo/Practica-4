@@ -1,20 +1,32 @@
 #ifndef ENRRUTADORES_H
 #define ENRRUTADORES_H
 
-#include<iostream>
-#include<vector>
+#include <iostream>
+#include <vector>
 
 using namespace std;
 
-class Enrutadores
+class Enrutador
 {
 public:
-    Enrutadores();
-
-    Enrutadores(string Nombre);
+    Enrutador();
+    Enrutador(string nombre);
     string nombreNodo;
-    vector <Enrutadores>;
+    vector<Enrutador*> listaDeNodos;
+    vector<int> listaCostos;
+    vector<int> tablaEnrutamiento;
+    vector<Enrutador*> headerTabla;
 
+    // Métodos
+    void agregarNodo(Enrutador* nodo, int costo);
+    void imprimirNodos();
+    void crearTabla();
+
+    void MirarVecinos(Enrutador* nodo, int costo);
+    bool nodoYaEstaAgregado(Enrutador* nodo);
+
+    void imprimirNodosAccesibles();
 };
 
-#endif // ENRRUTADORES_H
+
+#endif // ENRUTADORES_H
