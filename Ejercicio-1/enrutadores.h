@@ -26,6 +26,9 @@ public:
     bool nodoYaEstaAgregado(Enrutador* nodo);
 
     void imprimirNodosAccesibles();
+    void camino_corto(Enrutador* nodo);
+    void inicializacion();
+    void relajar();
 };
 
 
