@@ -1,5 +1,5 @@
 #include "enrutadores.h"
-
+#include<conio.h>
 Enrutador::Enrutador()
 {
 
@@ -54,94 +54,78 @@ bool Enrutador::nodoYaEstaAgregado(Enrutador *nodo)
 
 void Enrutador::imprimirNodosAccesibles()
 {
-    cout << "A " << this->nombreNodo << " está asociados los nodos"<< endl;
+    cout << "A " << this->nombreNodo << " esta asociados los nodos"<< endl;
     for(int i=0; i < this->headerTabla.size() ; i++){
         cout << "  - " << this->headerTabla[i]->nombreNodo << " costo: "<< this->tablaEnrutamiento[i] << endl;
     }
 }
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-//Declarando variables
-#define MAX_NODOS 1024 /* número máximo de nodos */
-#define INFINITO 1000000000 /* un número mayor que cualquier ruta máxima */
-int n,i,k,minimo, dist[MAX_NODOS][MAX_NODOS]; /* dist[i][j] es la distancia de i a j */
-
-struct nodo { /* Indica eL estado del nodo,la ruta y quien lo precede a dicho nodo */
-    int predecesor; /* nodo previo */
-    int longitud; /* longitud del origen a este nodo */
-    bool etiqueta;	/*verdadero para un nodo permanente y falso para nodo tentativo*/
-} nodo[MAX_NODOS];
-
-void Enrutador :: inicializacion(){
-    int p;
-    for (p = &listaDeNodos[0]; p < &listaDeNodos[6]; p++) { /* estado de inicialización*/
-            p->predecesor = -1;
-            p->longitud = INFINITO;
-            p->etiqueta = false;
-        }
-}
-void Enrutador ::relajar(){
-    for (int i = 0; i <6; i++){ /* este grafo tiene n nodos */
-            if (dist[k][i] != 0 && listaDeNodos[i].etiqueta == false) {
-                if (nodo[k].longitud + dist[k][i] < nodo[i].longitud) {
-                    nodo[i].predecesor = k;
-                        nodo[i].longitud = nodo[k].longitud + dist[k][i];
-                }
-                }
-        }
-}
-void extraer_minimo(){ 	/* Encuentra los nodo etiquetados tentativamente y determina el menor entre estos nodos tentativos. */
-    k = 0;
-    minimo = INFINITO;
-    for (i = 0; i < n; i++){
-        if (nodo[i].etiqueta == false && nodo[i].longitud < minimo) {
-            minimo = nodo[i].longitud;
-            k = i;
-        }
-    }
+///////////////////////////////////////////////////////////////////////////////
+void floyd::ingresar(){
+    cout<<"ingrese numero de nodos: ";
+    cin>>n;
+    int i,j;
+ for(i=1;i<=n;i++)
+    for(j=1;j<=n;j++){
+    cout<<"ingrese matriz de ["<<i<<"]["<<j<<"] ";
+    cin>>A[i][j];    }
 }
 
-void camino_corto(int s, int t, int camino[]) {
-    inicializacion();
-    nodo[t].longitud = 0; nodo[t].etiqueta = true;
-    k = t; /* k es el nodo de trabajo inicial */
-    do{ /* ¿hay una ruta mejor desde k? */
-        relajar();
-        extraer_minimo();
-        nodo[k].etiqueta = true;
-    } while (k != s);
-    /* Copia la ruta en el arreglo de salida y procede a ir imprimiendolo. */
-    i = 0; k = s;
-    cout<< "La ruta es: ";
-    do {
-        cout<< k<< " ";
-        camino[i] = k;
-        k = nodo[k].predecesor;
-        i++;
-    } while (k >= 0);
-    cout <<"La ruta minima es: "<<minimo<<endl ;
+void floyd::nodointer()
+{int i,j;
+    for(i=1;i<=6;i++)
+    for(j=1;j<=6;j++)
+    {if(i==j)
+    B[i][j]=0;
+    else B[i][j]=j;}
 }
 
+void floyd::floid()
+{int bucle,i,j,suma;
+    for(bucle=1;bucle<=n;bucle++){
+for(i=1;i<=n;i++){
+vect1[i]=A[bucle][i];
+vect2[i]=A[i][bucle];
+}
 
+for(i=1;i<=n;i++)
+for(j=1;j<=n;j++){
+if(vect2[i]==999 || vect1[j]==999) suma=999;
+else suma=vect2[i]+vect1[j];
+if(suma<A[i][j]){
+A[i][j]=suma;
+B[i][j]=bucle;}
 
+}}}
 
+void floyd:: mostrar1()
+{int i,j;
+    cout<<"imprime distancias o pesos optimo "<<endl;
+      for(i=1;i<=n;i++){
+    for(j=1;j<=n;j++)
+    {cout<<A[i][j];}
+cout<<endl;}
+}
 
+void floyd:: mostrar2()
+{int i,j;
+    cout<<"imprime matriz intermedios "<<endl;
+      for(i=1;i<=n;i++){
+    for(j=1;j<=n;j++)
+    {cout<<B[i][j];}
+cout<<endl;}
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+void floyd:: preguntar()
+{int i,j;
+    cout<<"de que vertice a que vertice desea ir : "<<endl;
+cin>>i>>j;
+if(i==0 || j==0 || i==j)
+cout<<"distancia minima es 0 "<<endl;
+else{
+cout<<"distancia minima "<<endl;
+cout<<A[i][j]<<endl;
+cout<<"pasa por el "<<B[i][j]<<"y despues por el "<<j<<endl;}
+getch();
+}
 

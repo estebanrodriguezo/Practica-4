@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <vector>
+#include<conio.h>
 
 using namespace std;
 
@@ -30,6 +31,25 @@ public:
     void inicializacion();
     void relajar();
 };
+
+class floyd{
+    int n;
+int A[10][10];
+int vect1[10];
+int vect2[10];
+int B[10][10];
+public:
+
+void ingresar();
+void nodointer();
+void floid();
+void mostrar1();
+void mostrar2();
+void preguntar();
+
+};
+
+
 
 
 #endif // ENRUTADORES_H
