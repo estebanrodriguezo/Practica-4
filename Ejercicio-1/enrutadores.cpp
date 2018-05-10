@@ -103,7 +103,7 @@ void floyd:: mostrar1()
     cout<<"imprime distancias o pesos optimo "<<endl;
       for(i=1;i<=n;i++){
     for(j=1;j<=n;j++)
-    {cout<<A[i][j];}
+    {cout<<A[i][j]<<"\t";}
 cout<<endl;}
 }
 
@@ -112,7 +112,7 @@ void floyd:: mostrar2()
     cout<<"imprime matriz intermedios "<<endl;
       for(i=1;i<=n;i++){
     for(j=1;j<=n;j++)
-    {cout<<B[i][j];}
+    {cout<<B[i][j]<<"\t";}
 cout<<endl;}
 }
 
@@ -125,7 +125,7 @@ cout<<"distancia minima es 0 "<<endl;
 else{
 cout<<"distancia minima "<<endl;
 cout<<A[i][j]<<endl;
-cout<<"pasa por el "<<B[i][j]<<"y despues por el "<<j<<endl;}
+cout<<"pasa por el "<<B[i][j]<<" y despues por el "<<j<<endl;}
 getch();
 }
 
